@@ -42,3 +42,23 @@ The `sam2_train/` tree contains code from Meta's [Segment Anything 2](https://gi
 ## Status
 
 Research prototype. The code emphasizes experimentation with detector-guided temporal segmentation rather than a packaged end-user application.
+
+
+## Goal
+
+The project tests a detector-guided video segmentation workflow: detect a target, convert its box into a segmentation prompt, and propagate the resulting mask through later frames.
+
+## Installation
+
+Create an isolated Python environment and install PyTorch for the target CPU or CUDA platform. The remaining imports require OpenCV, Ultralytics, Segment Anything, and the dependencies used by the included SAM 2 code. Dependency versions are not pinned, so a reproducible environment should be recorded before experiments are compared.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install torch torchvision opencv-python ultralytics
+python main.py
+```
+
+## Working with the Repository
+
+Before running `main.py`, update its input/output paths and supply the YOLO, SAM, and SAM 2 checkpoints expected by the script. The `sam2_train/` directory is upstream model code; integration changes should normally remain in the top-level pipeline rather than altering the vendored implementation.
